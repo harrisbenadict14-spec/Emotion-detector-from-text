@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Emotion Detector - Analyze Text Emotions</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Background Animation -->
+    <div class="background-animation">
+        <div class="gradient-bg"></div>
+        <div class="particles" id="particles"></div>
+    </div>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-brain"></i>
+                    <h1>AI Emotion Detector</h1>
+                </div>
+                <div class="theme-toggle">
+                    <button id="theme-btn" class="theme-btn">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content">
+                <h2 class="typing-text" id="typing-text">Discover the emotions behind your words</h2>
+                <p>Advanced AI-powered emotion detection with real-time analysis</p>
+            </div>
+        </section>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Input Section -->
+            <section class="input-section">
+                <div class="input-card">
+                    <h3><i class="fas fa-keyboard"></i> Enter Your Text</h3>
+                    <div class="input-container">
+                        <textarea 
+                            id="text-input" 
+                            placeholder="Type or paste your text here to analyze emotions..."
+                            rows="6"
+                            maxlength="1000"
+                        ></textarea>
+                        <div class="input-footer">
+                            <span class="char-count">
+                                <span id="char-current">0</span> / 1000 characters
+                            </span>
+                            <button id="analyze-btn" class="analyze-btn">
+                                <i class="fas fa-search"></i>
+                                Analyze Emotion
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Results Section -->
+            <section class="results-section" id="results-section" style="display: none;">
+                <div class="results-card">
+                    <h3><i class="fas fa-chart-pie"></i> Emotion Analysis Results</h3>
+                    <div class="results-content">
+                        <div class="emotion-display">
+                            <div class="primary-emotion" id="primary-emotion">
+                                <div class="emotion-icon" id="emotion-icon">
+                                    <i class="fas fa-smile"></i>
+                                </div>
+                                <div class="emotion-details">
+                                    <h4 id="emotion-name">Happy</h4>
+                                    <div class="confidence-bar">
+                                        <div class="confidence-fill" id="confidence-fill"></div>
+                                        <span class="confidence-text" id="confidence-text">85%</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="probabilities" id="probabilities">
+                            <h4>Emotion Distribution</h4>
+                            <div class="probability-bars" id="probability-bars">
+                                <!-- Probability bars will be inserted here -->
+                            </div>
+                        </div>
+
+                        <div class="cleaned-text" id="cleaned-text" style="display: none;">
+                            <h4>Processed Text</h4>
+                            <p id="cleaned-text-content"></p>
+                        </div>
+
+                        <div class="result-actions">
+                            <button id="save-btn" class="save-btn">
+                                <i class="fas fa-save"></i>
+                                Save to History
+                            </button>
+                            <button id="export-btn" class="export-btn">
+                                <i class="fas fa-download"></i>
+                                Export Results
+                            </button>
+                            <button id="clear-btn" class="clear-btn">
+                                <i class="fas fa-trash"></i>
+                                Clear Results
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- History Section -->
+            <section class="history-section" id="history-section">
+                <div class="history-card">
+                    <div class="history-header">
+                        <h3><i class="fas fa-history"></i> Analysis History</h3>
+                        <button id="clear-history-btn" class="clear-history-btn">
+                            <i class="fas fa-trash-alt"></i>
+                            Clear All
+                        </button>
+                    </div>
+                    <div class="history-content" id="history-content">
+                        <p class="no-history">No analysis history yet. Start analyzing emotions!</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Statistics Section -->
+            <section class="stats-section" id="stats-section" style="display: none;">
+                <div class="stats-card">
+                    <h3><i class="fas fa-chart-bar"></i> Statistics Dashboard</h3>
+                    <div class="stats-content" id="stats-content">
+                        <div class="stat-item">
+                            <span class="stat-label">Total Analyses</span>
+                            <span class="stat-value" id="total-analyses">0</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Most Common Emotion</span>
+                            <span class="stat-value" id="most-common">-</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-label">Average Confidence</span>
+                            <span class="stat-value" id="avg-confidence">0%</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>&copy; 2024 AI Emotion Detector. Built with ❤️ using Python, FastAPI, and modern web technologies.</p>
+        </footer>
+    </div>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loading-overlay">
+        <div class="loading-spinner">
+            <i class="fas fa-spinner fa-spin"></i>
+            <p>Analyzing emotions...</p>
+        </div>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">
+        <div class="toast-content">
+            <i class="fas fa-check-circle"></i>
+            <span id="toast-message">Success!</span>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
