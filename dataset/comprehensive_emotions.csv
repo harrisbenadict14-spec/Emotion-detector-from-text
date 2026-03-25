@@ -1,0 +1,450 @@
+text,emotion
+"I am so happy today!",happy
+"I feel really sad and depressed",sad
+"This makes me so angry",angry
+"I'm scared and worried",fear
+"I'm completely surprised",surprise
+"I feel neutral about this",neutral
+"I feel disgusted by this",disgust
+"I'm so jealous of them",jealousy
+"I feel proud of my achievement",pride
+"I'm ashamed of what I did",shame
+"I feel guilty about my actions",guilt
+"I'm so excited for the trip",excitement
+"I feel content and peaceful",contentment
+"I'm disappointed with the results",disappointment
+"I feel hopeful about the future",hope
+"I'm grateful for everything",gratitude
+"I feel confused about this",confusion
+"I'm bored with this routine",boredom
+"I feel relieved it's over",relief
+"I'm curious to learn more",curiosity
+"I feel nostalgic thinking about childhood",nostalgia
+"I'm embarrassed about what happened",embarrassment
+"I feel confident I can do this",confidence
+"I'm anxious about the exam",anxiety
+"I feel thrilled by this experience",thrill
+"I'm hurt by your words",hurt
+"I feel lonely without friends",loneliness
+"I'm exhausted from work",exhaustion
+"I feel refreshed after the nap",refreshment
+"I'm frustrated with this situation",frustration
+"I feel calm and relaxed",calm
+"I'm terrified of heights",terror
+"I feel delighted by the news",delight
+"I'm annoyed by the noise",annoyance
+"I feel amazed by this view",amazement
+"I'm devastated by the loss",devastation
+"I feel euphoric about the success",euphoria
+"I'm horrified by what I saw",horror
+"I feel blissful in this moment",bliss
+"I'm irritated by the delay",irritation
+"I feel overjoyed by the gift",overjoyed
+"I'm appalled by the behavior",appalled
+"I feel serene in the garden",serene
+"I'm bewildered by the complexity",bewildered
+"I feel ecstatic about the win",ecstatic
+"I'm repulsed by the smell",repulsed
+"I feel tranquil by the ocean",tranquil
+"I'm agitated by the argument",agitated
+"I feel jubilant about the promotion",jubilant
+"I'm mortified by my mistake",mortified
+"I feel peaceful in nature",peaceful
+"I'm outraged by the injustice",outraged
+"I feel blissful with my partner",blissful
+"I'm vexed by the problem",vexed
+"I feel elated by the compliment",elated
+"I'm disgusted by the food",disgusted
+"I feel melancholic today",melancholy
+"I'm envious of their success",envy
+"I feel optimistic about tomorrow",optimistic
+"I'm pessimistic about the outcome",pessimistic
+"I feel zealous about the project",zealous
+"I'm apathetic about the news",apathetic
+"I feel sympathetic towards them",sympathetic
+"I'm empathetic to their pain",empathetic
+"I feel passionate about music",passionate
+"I'm indifferent to the result",indifferent
+"I feel resentful about the past",resentful
+"I'm nostalgic for the good old days",nostalgic
+"I feel wistful thinking of you",wistful
+"I'm apprehensive about the future",apprehensive
+"I feel contemplative in silence",contemplative
+"I'm jubilant we won the game",jubilant
+"I feel serene after meditation",serene
+"I'm thrilled by the adventure",thrilled
+"I feel blissful in love",blissful
+"I'm horrified by the accident",horrified
+"I feel ecstatic at the concert",ecstatic
+"I'm amazed by the magic show",amazed
+"I feel delighted with the surprise",delighted
+"I'm terrified of the dark",terrified
+"I feel devastated by the breakup",devastated
+"I'm overjoyed by the proposal",overjoyed
+"I feel euphoric after the race",euphoric
+"I'm mortified by my blunder",mortified
+"I feel agitated by the chaos",agitated
+"I'm outraged by the cruelty",outraged
+"I feel appalled by the violence",appalled
+"I'm vexed by the complications",vexed
+"I feel elated by the achievement",elated
+"I'm repulsed by the filth",repulsed
+"I feel melancholic in the rain",melancholy
+"I'm envious of their talent",envy
+"I feel optimistic about the plan",optimistic
+"I'm pessimistic about the economy",pessimistic
+"I feel zealous about the cause",zealous
+"I'm apathetic about politics",apathetic
+"I feel sympathetic for the poor",sympathetic
+"I'm empathetic to their struggle",empathetic
+"I feel passionate about art",passionate
+"I'm indifferent to celebrity gossip",indifferent
+"I feel resentful of the betrayal",resentful
+"I'm nostalgic for my youth",nostalgic
+"I feel wistful for lost love",wistful
+"I'm apprehensive about the meeting",apprehensive
+"I feel contemplative about life",contemplative
+"I'm jubilant about the victory",jubilant
+"I feel serene by the lake",serene
+"I'm thrilled by the performance",thrilled
+"I feel blissful in the moment",blissful
+"I'm horrified by the tragedy",horrified
+"I feel ecstatic with joy",ecstatic
+"I'm amazed by the technology",amazed
+"I feel delighted by the gift",delighted
+"I'm terrified of failure",terrified
+"I feel devastated by the news",devastated
+"I'm overjoyed by the reunion",overjoyed
+"I feel euphoric about life",euphoria
+"I'm mortified by the embarrassment",mortified
+"I feel agitated by the wait",agitated
+"I'm outraged by the lie",outraged
+"I feel appalled by the disrespect",appalled
+"I'm vexed by the attitude",vexed
+"I feel elated by the success",elated
+"I'm repulsed by the cruelty",repulsed
+"I feel melancholic remembering",melancholy
+"I'm envious of the opportunity",envy
+"I feel optimistic about change",optimistic
+"I'm pessimistic about the future",pessimistic
+"I feel zealous for justice",zealous
+"I'm apathetic about the meeting",apathetic
+"I feel sympathetic to their loss",sympathetic
+"I'm empathetic to their situation",empathetic
+"I feel passionate about helping",passionate
+"I'm indifferent to criticism",indifferent
+"I feel resentful of the unfairness",resentful
+"I'm nostalgic for home",nostalgic
+"I feel wistful for the past",wistful
+"I'm apprehensive about the test",apprehensive
+"I feel contemplative about decisions",contemplative
+"I'm jubilant about the celebration",jubilant
+"I feel serene in the quiet",serene
+"I'm thrilled by the challenge",thrilled
+"I feel blissful with family",blissful
+"I'm horrified by the crime",horrified
+"I feel ecstatic about the opportunity",ecstatic
+"I'm amazed by the talent",amazed
+"I feel delighted by the kindness",delighted
+"I'm terrified of being alone",terrified
+"I feel devastated by the failure",devastated
+"I'm overjoyed by the surprise party",overjoyed
+"I feel euphoric with happiness",euphoric
+"I'm mortified by the criticism",mortified
+"I feel agitated by the stress",agitated
+"I'm outraged by the corruption",outraged
+"I feel appalled by the neglect",appalled
+"I'm vexed by the inefficiency",vexed
+"I feel elated by the recognition",elated
+"I'm repulsed by the injustice",repulsed
+"I feel melancholic thinking of past",melancholy
+"I'm envious of their happiness",envy
+"I feel optimistic about recovery",optimistic
+"I'm pessimistic about the situation",pessimistic
+"I feel zealous about learning",zealous
+"I'm apathetic about the drama",apathetic
+"I feel sympathetic for the sick",sympathetic
+"I'm empathetic to their feelings",empathetic
+"I feel passionate about my work",passionate
+"I'm indifferent to opinions",indifferent
+"I feel resentful of the treatment",resentful
+"I'm nostalgic for memories",nostalgic
+"I feel wistful for what could be",wistful
+"I'm apprehensive about the change",apprehensive
+"I feel contemplative about choices",contemplative
+"I'm jubilant about the good news",jubilant
+"I feel serene after yoga",serene
+"I'm thrilled by the speed",thrilled
+"I feel blissful in meditation",blissful
+"I'm horrified by the violence",horrified
+"I feel ecstatic with love",ecstatic
+"I'm amazed by the beauty",amazed
+"I feel delighted by the thoughtfulness",delighted
+"I'm terrified of the unknown",terrified
+"I feel devastated by the loss",devastated
+"I'm overjoyed by the celebration",overjoyed
+"I feel euphoric about the achievement",euphoric
+"I'm mortified by the memory",mortified
+"I feel agitated by the uncertainty",agitated
+"I'm outraged by the betrayal",outraged
+"I feel appalled by the selfishness",appalled
+"I'm vexed by the stubbornness",vexed
+"I feel elated by the praise",elated
+"I'm repulsed by the greed",repulsed
+"I feel melancholic in the evening",melancholy
+"I'm envious of their lifestyle",envy
+"I feel optimistic about the project",optimistic
+"I'm pessimistic about the results",pessimistic
+"I feel zealous about the mission",zealous
+"I'm apathetic about the competition",apathetic
+"I feel sympathetic for the struggling",sympathetic
+"I'm empathetic to their story",empathetic
+"I feel passionate about the cause",passionate
+"I'm indifferent to trends",indifferent
+"I feel resentful of the injustice",resentful
+"I'm nostalgic for childhood",nostalgic
+"I feel wistful for summer days",wistful
+"I'm apprehensive about the presentation",apprehensive
+"I feel contemplative about the future",contemplative
+"I'm jubilant about the award",jubilant
+"I feel serene watching sunset",serene
+"I'm thrilled by the competition",thrilled
+"I feel blissful in the moment",blissful
+"I'm horrified by the suffering",horrified
+"I feel ecstatic about the possibilities",ecstatic
+"I'm amazed by the creativity",amazed
+"I feel delighted by the surprise visit",delighted
+"I'm terrified of making mistakes",terrified
+"I feel devastated by the rejection",devastated
+"I'm overjoyed by the acceptance",overjoyed
+"I feel euphoric about the new beginning",euphoric
+"I'm mortified by the error",mortified
+"I feel agitated by the pressure",agitated
+"I'm outraged by the discrimination",outraged
+"I feel appalled by the ignorance",appalled
+"I'm vexed by the bureaucracy",vexed
+"I feel elated by the achievement",elated
+"I'm repulsed by the manipulation",repulsed
+"I feel melancholic listening to sad music",melancholy
+"I'm envious of their success",envy
+"I feel optimistic about the new year",optimistic
+"I'm pessimistic about the challenges",pessimistic
+"I feel zealous about the innovation",zealous
+"I'm apathetic about the routine",apathetic
+"I feel sympathetic for the unfortunate",sympathetic
+"I'm empathetic to their pain",empathetic
+"I feel passionate about making a difference",passionate
+"I'm indifferent to material possessions",indifferent
+"I feel resentful of the past",resentful
+"I'm nostalgic for better times",nostalgic
+"I feel wistful for lost opportunities",wistful
+"I'm apprehensive about the journey",apprehensive
+"I feel contemplative about life's meaning",contemplative
+"I'm jubilant about the success",jubilant
+"I feel serene in the present moment",serene
+"I'm thrilled by the adventure",thrilled
+"I feel blissful with loved ones",blissful
+"I'm horrified by the cruelty",horrified
+"I feel ecstatic about the future",ecstatic
+"I'm amazed by the progress",amazed
+"I feel delighted by the recognition",delighted
+"I'm terrified of the consequences",terrified
+"I feel devastated by the setback",devastated
+"I'm overjoyed by the victory",overjoyed
+"I feel euphoric about the breakthrough",euphoric
+"I'm mortified by the failure",mortified
+"I feel agitated by the conflict",agitated
+"I'm outraged by the abuse",outraged
+"I feel appalled by the negligence",appalled
+"I'm vexed by the obstacles",vexed
+"I feel elated by the triumph",elated
+"I'm repulsed by the exploitation",repulsed
+"I feel melancholic in autumn",melancholy
+"I'm envious of their freedom",envy
+"I feel optimistic about healing",optimistic
+"I'm pessimistic about the outcome",pessimistic
+"I feel zealous about truth",zealous
+"I'm apathetic about gossip",apathetic
+"I feel sympathetic for the victims",sympathetic
+"I'm empathetic to their struggle",empathetic
+"I feel passionate about justice",passionate
+"I'm indifferent to fame",indifferent
+"I feel resentful of the betrayal",resentful
+"I'm nostalgic for the past",nostalgic
+"I feel wistful for what was",wistful
+"I'm apprehensive about the unknown",apprehensive
+"I feel contemplative about existence",contemplative
+"I'm jubilant about the celebration",jubilant
+"I feel serene in nature",serene
+"I'm thrilled by the experience",thrilled
+"I feel blissful in love",blissful
+"I'm horrified by the injustice",horrified
+"I feel ecstatic about life",ecstatic
+"I'm amazed by the wonder",amazed
+"I feel delighted by the gesture",delighted
+"I'm terrified of losing everything",terrified
+"I feel devastated by the tragedy",devastated
+"I'm overjoyed by the miracle",overjoyed
+"I feel euphoric with joy",euphoric
+"I'm mortified by the shame",mortified
+"I feel agitated by the chaos",agitated
+"I'm outraged by the violence",outraged
+"I feel appalled by the cruelty",appalled
+"I'm vexed by the problems",vexed
+"I feel elated by the success",elated
+"I'm repulsed by the evil",repulsed
+"I feel melancholic tonight",melancholy
+"I'm envious of their peace",envy
+"I feel optimistic about tomorrow",optimistic
+"I'm pessimistic about humanity",pessimistic
+"I feel zealous about knowledge",zealous
+"I'm apathetic about luxury",apathetic
+"I feel sympathetic for the weak",sympathetic
+"I'm empathetic to their sorrow",empathetic
+"I feel passionate about change",passionate
+"I'm indifferent to wealth",indifferent
+"I feel resentful of the system",resentful
+"I'm nostalgic for innocence",nostalgic
+"I feel wistful for dreams",wistful
+"I'm apprehensive about reality",apprehensive
+"I feel contemplative about the universe",contemplative
+"I'm jubilant about the achievement",jubilant
+"I feel serene within myself",serene
+"I'm thrilled by the discovery",thrilled
+"I feel blissful in the present",blissful
+"I'm horrified by the truth",horrified
+"I feel ecstatic about possibilities",ecstatic
+"I'm amazed by the complexity",amazed
+"I feel delighted by the beauty",delighted
+"I'm terrified of the darkness",terrified
+"I feel devastated by the end",devastated
+"I'm overjoyed by the beginning",overjoyed
+"I feel euphoric about existence",euphoric
+"I'm mortified by the truth",mortified
+"I feel agitated by the reality",agitated
+"I'm outraged by the system",outraged
+"I feel appalled by the society",appalled
+"I'm vexed by the world",vexed
+"I feel elated by the journey",elated
+"I'm repulsed by the hate",repulsed
+"I feel melancholic about life",melancholy
+"I'm envious of their wisdom",envy
+"I feel optimistic about growth",optimistic
+"I'm pessimistic about survival",pessimistic
+"I feel zealous about love",zealous
+"I'm apathetic about power",apathetic
+"I feel sympathetic for humanity",sympathetic
+"I'm empathetic to all beings",empathetic
+"I feel passionate about life",passionate
+"I'm indifferent to status",indifferent
+"I feel resentful of fate",resentful
+"I'm nostalgic for eternity",nostalgic
+"I feel wistful for infinity",wistful
+"I'm apprehensive about destiny",apprehensive
+"I feel contemplative about mortality",contemplative
+"I'm jubilant about consciousness",jubilant
+"I feel serene in the cosmos",serene
+"I'm thrilled by existence",thrilled
+"I feel blissful in awareness",blissful
+"I'm horrified by mortality",horrified
+"I feel ecstatic about being",ecstatic
+"I'm amazed by consciousness",amazed
+"I feel delighted by awareness",delighted
+"I'm terrified of non-existence",terrified
+"I feel devastated by mortality",devastated
+"I'm overjoyed by life",overjoyed
+"I feel euphoric about consciousness",euphoric
+"I'm mortified by my existence",mortified
+"I feel agitated by the universe",agitated
+"I'm outraged by existence",outraged
+"I feel appalled by reality",appalled
+"I'm vexed by consciousness",vexed
+"I feel elated by awareness",elated
+"I'm repulsed by mortality",repulsed
+"I feel melancholic about existence",melancholy
+"I'm envious of the dead",envy
+"I feel optimistic about afterlife",optimistic
+"I'm pessimistic about nothingness",pessimistic
+"I feel zealous about meaning",zealous
+"I'm apathetic about death",apathetic
+"I feel sympathetic for the dying",sympathetic
+"I'm empathetic to mortality",empathetic
+"I feel passionate about legacy",passionate
+"I'm indifferent to eternity",indifferent
+"I feel resentful of mortality",resentful
+"I'm nostalgic for life",nostalgic
+"I feel wistful for the living",wistful
+"I'm apprehensive about dying",apprehensive
+"I feel contemplative about death",contemplative
+"I'm jubilant about survival",jubilant
+"I feel serene facing mortality",serene
+"I'm thrilled by the mystery",thrilled
+"I feel blissful accepting death",blissful
+"I'm horrified by the void",horrified
+"I feel ecstatic transcending",ecstatic
+"I'm amazed by the cycle",amazed
+"I feel delighted by the journey",delighted
+"I'm terrified of the end",terrified
+"I feel devastated by finality",devastated
+"I'm overjoyed by the experience",overjoyed
+"I feel euphoric about the cycle",euphoric
+"I'm mortified by the end",mortified
+"I feel agitated by mortality",agitated
+"I'm outraged by death",outraged
+"I feel appalled by the void",appalled
+"I'm vexed by the cycle",vexed
+"I feel elated by the journey",elated
+"I'm repulsed by finality",repulsed
+"I feel melancholic about the end",melancholy
+"I'm envious of the immortal",envy
+"I feel optimistic about legacy",optimistic
+"I'm pessimistic about oblivion",pessimistic
+"I feel zealous about memory",zealous
+"I'm apathetic about the afterlife",apathetic
+"I feel sympathetic for the grieving",sympathetic
+"I'm empathetic to loss",empathetic
+"I feel passionate about remembrance",passionate
+"I'm indifferent to oblivion",indifferent
+"I feel resentful of time",resentful
+"I'm nostalgic for the present",nostalgic
+"I feel wistful for the future",wistful
+"I'm apprehensive about time",apprehensive
+"I feel contemplative about eternity",contemplative
+"I'm jubilant about the present",jubilant
+"I feel serene in time",serene
+"I'm thrilled by the moment",thrilled
+"I feel blissful in the now",blissful
+"I'm horrified by time",horrified
+"I feel ecstatic about the present",ecstatic
+"I'm amazed by the moment",amazed
+"I feel delighted by the now",delighted
+"I'm terrified of time passing",terrified
+"I feel devastated by the past",devastated
+"I'm overjoyed by the present",overjoyed
+"I feel euphoric in the moment",euphoric
+"I'm mortified by time",mortified
+"I feel agitated by the present",agitated
+"I'm outraged by time",outraged
+"I feel appalled by the present",appalled
+"I'm vexed by the moment",vexed
+"I feel elated by the now",elated
+"I'm repulsed by time",repulsed
+"I feel melancholic in the moment",melancholy
+"I'm envious of the present",envy
+"I feel optimistic about the now",optimistic
+"I'm pessimistic about the moment",pessimistic
+"I feel zealous about the present",zealous
+"I'm apathetic about the now",apathetic
+"I feel sympathetic for time",sympathetic
+"I'm empathetic to the moment",empathetic
+"I feel passionate about the present",passionate
+"I'm indifferent to the now",indifferent
+"I feel resentful of the moment",resentful
+"I'm nostalgic for this moment",nostalgic
+"I feel wistful for the now",wistful
+"I'm apprehensive about the present",apprehensive
+"I feel contemplative about the moment",contemplative
+"I'm jubilant about the now",jubilant
+"I feel serene in the present",serene
+"I'm thrilled by the moment",thrilled
+"I feel blissful in the now",blissful

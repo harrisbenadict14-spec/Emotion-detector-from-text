@@ -30,8 +30,13 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Initialize emotion predictor
-predictor = EmotionPredictor()
+# Initialize emotion predictor with correct paths
+predictor = EmotionPredictor(
+    model_path="model/core_6_emotions_model.pkl",
+    vectorizer_path="model/core_6_emotions_vectorizer.pkl", 
+    mappings_path="model/core_6_emotions_mappings.pkl",
+    encoder_path="model/core_6_emotions_encoder.pkl"
+)
 
 # Pydantic models for request/response
 class TextInput(BaseModel):

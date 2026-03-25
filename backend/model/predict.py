@@ -10,15 +10,17 @@ from preprocess import TextPreprocessor
 class EmotionPredictor:
     """Class for making emotion predictions"""
     
-    def __init__(self, model_path="model/model.pkl", vectorizer_path="model/vectorizer.pkl", mappings_path="model/model_mappings.pkl"):
+    def __init__(self, model_path="core_6_emotions_model.pkl", vectorizer_path="core_6_emotions_vectorizer.pkl", mappings_path="core_6_emotions_mappings.pkl", encoder_path="core_6_emotions_encoder.pkl"):
         self.model_path = model_path
         self.vectorizer_path = vectorizer_path
         self.mappings_path = mappings_path
+        self.encoder_path = encoder_path
         self.preprocessor = TextPreprocessor()
         self.model = None
         self.vectorizer = None
         self.mappings = None
-        self.emotions = ['happy', 'sad', 'angry', 'fear', 'surprise', 'neutral']
+        self.label_encoder = None
+        self.emotions = ['happiness', 'sadness', 'anger', 'fear', 'surprise', 'disgust']
         
         # Load model components
         self.load_model()
@@ -42,6 +44,15 @@ class EmotionPredictor:
                 print(f"✅ Vectorizer loaded: {self.vectorizer_path}")
             else:
                 print(f"❌ Vectorizer file not found: {self.vectorizer_path}")
+                return False
+            
+            # Load label encoder
+            if os.path.exists(self.encoder_path):
+                with open(self.encoder_path, 'rb') as f:
+                    self.label_encoder = pickle.load(f)
+                print(f"✅ Label encoder loaded: {self.encoder_path}")
+            else:
+                print(f"❌ Label encoder file not found: {self.encoder_path}")
                 return False
             
             # Load mappings
@@ -92,7 +103,13 @@ class EmotionPredictor:
             text_vector = self.vectorizer.transform([cleaned_text])
             
             # Make prediction
-            prediction = self.model.predict(text_vector)[0]
+            prediction_encoded = self.model.predict(text_vector)[0]
+            
+            # Decode prediction using label encoder
+            if self.label_encoder:
+                prediction = self.label_encoder.inverse_transform([prediction_encoded])[0]
+            else:
+                prediction = str(prediction_encoded)
             
             # Get confidence score
             if hasattr(self.model, 'predict_proba'):
@@ -112,13 +129,15 @@ class EmotionPredictor:
             # Add probabilities if requested
             if include_probabilities and probabilities is not None:
                 prob_dict = {}
-                for i, emotion in enumerate(self.model.classes_):
-                    prob_dict[emotion] = float(probabilities[i])
-                
-                # Ensure all emotions are included
-                for emotion in self.emotions:
-                    if emotion not in prob_dict:
-                        prob_dict[emotion] = 0.0
+                if self.label_encoder:
+                    # Map probabilities to emotion names
+                    for i, prob in enumerate(probabilities):
+                        emotion_name = self.label_encoder.inverse_transform([i])[0]
+                        prob_dict[emotion_name] = float(prob)
+                else:
+                    # Fallback to model classes
+                    for i, emotion in enumerate(self.model.classes_):
+                        prob_dict[emotion] = float(probabilities[i])
                 
                 result['probabilities'] = prob_dict
             
@@ -157,11 +176,19 @@ class EmotionPredictor:
                 'error': 'Model not loaded'
             }
         
+        # Get supported emotions from label encoder or fallback
+        if self.label_encoder:
+            supported_emotions = list(self.label_encoder.classes_)
+        elif self.mappings and 'core_emotions' in self.mappings:
+            supported_emotions = self.mappings['core_emotions']
+        else:
+            supported_emotions = self.emotions
+        
         info = {
             'model_loaded': True,
             'model_type': type(self.model).__name__,
             'vectorizer': type(self.vectorizer).__name__,
-            'supported_emotions': self.emotions,
+            'supported_emotions': supported_emotions,
             'features': self.vectorizer.get_feature_names_out().shape[0] if hasattr(self.vectorizer, 'get_feature_names_out') else 'Unknown'
         }
         
@@ -180,12 +207,12 @@ def main():
     
     # Test predictions
     test_texts = [
-        "I am so happy today!",
+        "I am so happy and joyful today!",
         "I feel really sad and depressed",
-        "This makes me so angry",
-        "I'm scared and worried",
+        "This makes me so angry and frustrated",
+        "I'm scared and terrified",
         "I'm completely surprised by this news",
-        "I feel neutral about this situation"
+        "I feel disgusted by this behavior"
     ]
     
     for text in test_texts:

@@ -45,6 +45,10 @@ class TextPreprocessor:
         if not isinstance(text, str):
             return ""
         
+        original_text = text.strip()
+        if not original_text:
+            return ""
+        
         # Convert to lowercase
         text = text.lower()
         
@@ -70,6 +74,12 @@ class TextPreprocessor:
         
         # Join back to text
         cleaned_text = ' '.join(filtered_tokens)
+        
+        # If cleaning results in empty text, return basic cleaned version
+        if not cleaned_text.strip():
+            # Fallback: just remove punctuation and convert to lowercase
+            fallback = re.sub(r'[^\w\s]', '', original_text.lower())
+            return fallback.strip()
         
         return cleaned_text.strip()
     

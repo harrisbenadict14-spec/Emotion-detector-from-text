@@ -16,13 +16,13 @@ from preprocess import TextPreprocessor
 class EmotionTrainer:
     """Class for training emotion detection models"""
     
-    def __init__(self, dataset_path="../../dataset/emotions_expanded.csv"):
+    def __init__(self, dataset_path="../../dataset/comprehensive_emotions.csv"):
         self.dataset_path = dataset_path
         self.preprocessor = TextPreprocessor()
         self.vectorizer = None
         self.model = None
         self.label_encoder = None
-        self.emotions = ['happy', 'sad', 'angry', 'fear', 'surprise', 'neutral']
+        self.emotions = ['happy', 'sad', 'angry', 'fear', 'surprise', 'neutral', 'disgust', 'jealousy', 'pride', 'shame', 'guilt', 'excitement', 'contentment', 'disappointment', 'hope', 'gratitude', 'confusion', 'boredom', 'relief', 'curiosity', 'nostalgia', 'embarrassment', 'confidence', 'anxiety', 'thrill', 'hurt', 'loneliness', 'exhaustion', 'refreshment', 'frustration', 'calm', 'terror', 'delight', 'annoyance', 'amazement', 'devastation', 'euphoria', 'horror', 'bliss', 'irritation', 'overjoyed', 'appalled', 'serene', 'bewildered', 'agitated', 'jubilant', 'mortified', 'peaceful', 'outraged', 'vexed', 'elated', 'repulsed', 'melancholy', 'envy', 'optimistic', 'pessimistic', 'zealous', 'apathetic', 'sympathetic', 'empathetic', 'passionate', 'indifferent', 'resentful', 'wistful', 'apprehensive', 'contemplative']
         
     def load_data(self):
         """Load and prepare the dataset"""
@@ -71,9 +71,7 @@ class EmotionTrainer:
         y = df['emotion']
         
         # Split data
-        X_train, X_test, y_train, y_test = train_test_split(
-            X, y, test_size=test_size, random_state=42, stratify=y
-        )
+        X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=test_size, random_state=42)
         
         # Create TF-IDF vectorizer
         self.vectorizer = TfidfVectorizer(
@@ -149,8 +147,8 @@ def main():
     # Train model
     success = trainer.train_model(
         model_type='logistic_regression',
-        test_size=0.2,
-        max_features=8000,
+        test_size=0.15,
+        max_features=15000,
         ngram_range=(1, 3)
     )
     
