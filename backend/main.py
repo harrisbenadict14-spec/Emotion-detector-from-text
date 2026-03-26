@@ -30,7 +30,7 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-# Initialize emotion predictor with correct paths
+# Initialize emotion predictor with standard paths
 predictor = EmotionPredictor(
     model_path="model/core_6_emotions_model.pkl",
     vectorizer_path="model/core_6_emotions_vectorizer.pkl", 

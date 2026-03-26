@@ -41,12 +41,12 @@ const elements = {
 
 // Emotion Configuration
 const emotionConfig = {
-    happy: { icon: 'fa-smile', color: '#f6ad55' },
-    sad: { icon: 'fa-sad-tear', color: '#4299e1' },
-    angry: { icon: 'fa-angry', color: '#fc8181' },
+    happiness: { icon: 'fa-smile', color: '#f6ad55' },
+    sadness: { icon: 'fa-sad-tear', color: '#4299e1' },
+    anger: { icon: 'fa-angry', color: '#fc8181' },
     fear: { icon: 'fa-grimace', color: '#9f7aea' },
     surprise: { icon: 'fa-surprise', color: '#48bb78' },
-    neutral: { icon: 'fa-meh', color: '#718096' }
+    disgust: { icon: 'fa-dizzy', color: '#e53e3e' }
 };
 
 // Initialize Application
@@ -146,7 +146,7 @@ function displayResults(result) {
     // Update primary emotion
     const emotion = result.emotion;
     const confidence = result.confidence;
-    const config = emotionConfig[emotion] || emotionConfig.neutral;
+    const config = emotionConfig[emotion] || emotionConfig.sadness;
     
     elements.emotionName.textContent = emotion.charAt(0).toUpperCase() + emotion.slice(1);
     elements.emotionIcon.innerHTML = `<i class="fas ${config.icon}"></i>`;
@@ -186,7 +186,7 @@ function displayProbabilities(probabilities) {
         .sort(([,a], [,b]) => b - a);
     
     sortedProbs.forEach(([emotion, probability]) => {
-        const config = emotionConfig[emotion] || emotionConfig.neutral;
+        const config = emotionConfig[emotion] || emotionConfig.sadness;
         const percentage = Math.round(probability * 100);
         
         const probabilityItem = document.createElement('div');
@@ -510,12 +510,12 @@ function formatTimestamp(timestamp) {
 }
 
 function getEmotionColor(emotion) {
-    const config = emotionConfig[emotion] || emotionConfig.neutral;
+    const config = emotionConfig[emotion] || emotionConfig.sadness;
     return config.color;
 }
 
 function getEmotionIcon(emotion) {
-    const config = emotionConfig[emotion] || emotionConfig.neutral;
+    const config = emotionConfig[emotion] || emotionConfig.sadness;
     return config.icon;
 }
 

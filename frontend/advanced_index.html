@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Emotion Detector</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 600px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            padding: 40px;
+            animation: slideUp 0.5s ease-out;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            color: white;
+            font-size: 2.5em;
+            font-weight: 700;
+            margin-bottom: 10px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .header p {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1.1em;
+        }
+
+        .input-section {
+            margin-bottom: 30px;
+        }
+
+        .text-input {
+            width: 100%;
+            min-height: 120px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 15px;
+            color: white;
+            font-size: 1.1em;
+            resize: vertical;
+            transition: all 0.3s ease;
+        }
+
+        .text-input:focus {
+            outline: none;
+            border-color: rgba(255, 255, 255, 0.6);
+            background: rgba(255, 255, 255, 0.15);
+        }
+
+        .text-input::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .char-count {
+            text-align: right;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9em;
+            margin-top: 8px;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+
+        .analyze-btn {
+            flex: 1;
+            padding: 15px 30px;
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a24 100%);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .analyze-btn:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(238, 90, 36, 0.3);
+        }
+
+        .analyze-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .debug-btn {
+            padding: 15px 20px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50px;
+            font-size: 0.9em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .debug-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .results-section {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 20px;
+            display: none;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .primary-emotion {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .emotion-icon {
+            font-size: 4em;
+            margin-bottom: 15px;
+            animation: bounce 0.6s ease-out;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-10px);
+            }
+            60% {
+                transform: translateY(-5px);
+            }
+        }
+
+        .emotion-name {
+            font-size: 2em;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 10px;
+            text-transform: capitalize;
+        }
+
+        .confidence-bar {
+            background: rgba(255, 255, 255, 0.2);
+            height: 30px;
+            border-radius: 15px;
+            overflow: hidden;
+            margin-bottom: 10px;
+            position: relative;
+        }
+
+        .confidence-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #4facfe 0%, #00f2fe 100%);
+            transition: width 0.8s ease-out;
+            border-radius: 15px;
+        }
+
+        .confidence-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-weight: 600;
+            font-size: 0.9em;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+        }
+
+        .low-confidence {
+            background: linear-gradient(90deg, #ff6b6b 0%, #ee5a24 100%);
+        }
+
+        .medium-confidence {
+            background: linear-gradient(90deg, #feca57 0%, #ff9ff3 100%);
+        }
+
+        .high-confidence {
+            background: linear-gradient(90deg, #48dbfb 0%, #0abde3 100%);
+        }
+
+        .emotions-distribution {
+            margin-top: 30px;
+        }
+
+        .emotions-distribution h3 {
+            color: white;
+            margin-bottom: 20px;
+            font-size: 1.2em;
+            text-align: center;
+        }
+
+        .emotion-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .emotion-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .emotion-label {
+            width: 120px;
+            font-weight: 600;
+            color: white;
+            text-transform: capitalize;
+        }
+
+        .emotion-bar-container {
+            flex: 1;
+            height: 25px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            overflow: hidden;
+            margin: 0 15px;
+        }
+
+        .emotion-bar {
+            height: 100%;
+            transition: width 0.8s ease-out;
+            border-radius: 12px;
+        }
+
+        .emotion-percentage {
+            width: 60px;
+            text-align: right;
+            color: white;
+            font-weight: 600;
+            font-size: 0.9em;
+        }
+
+        .emotion-colors {
+            --sadness: #3498db;
+            --happiness: #f39c12;
+            --anger: #e74c3c;
+            --fear: #9b59b6;
+            --surprise: #2ecc71;
+            --neutral: #95a5a6;
+        }
+
+        .debug-panel {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            padding: 20px;
+            margin-top: 20px;
+            display: none;
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
+            color: #00ff00;
+        }
+
+        .debug-panel h3 {
+            color: white;
+            margin-bottom: 15px;
+        }
+
+        .debug-content {
+            white-space: pre-wrap;
+            word-break: break-all;
+            max-height: 200px;
+            overflow-y: auto;
+        }
+
+        .loading-spinner {
+            display: none;
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .spinner {
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-top: 3px solid white;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .error-message {
+            background: rgba(231, 76, 60, 0.2);
+            border: 1px solid rgba(231, 76, 60, 0.5);
+            color: #ff6b6b;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .secondary-emotions {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .secondary-emotions h4 {
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 15px;
+            font-size: 1em;
+        }
+
+        .secondary-emotion-item {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 8px 15px;
+            border-radius: 20px;
+            margin: 5px;
+            color: white;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🧠 Advanced Emotion Detector</h1>
+            <p>AI-powered emotion analysis with transformer models</p>
+        </div>
+
+        <div class="input-section">
+            <textarea 
+                id="textInput" 
+                class="text-input" 
+                placeholder="Enter text to analyze emotions...&#10;&#10;Try examples like:&#10;• 'I am crying'&#10;• 'I just won my dream job!'&#10;• 'I'm scared of what will happen'"
+                maxlength="500"
+            ></textarea>
+            <div class="char-count">
+                <span id="charCount">0</span> / 500
+            </div>
+        </div>
+
+        <div class="button-group">
+            <button id="analyzeBtn" class="analyze-btn">
+                <i class="fas fa-brain"></i>
+                Analyze Emotion
+            </button>
+            <button id="debugBtn" class="debug-btn">
+                <i class="fas fa-bug"></i>
+                Debug
+            </button>
+        </div>
+
+        <div class="loading-spinner" id="loadingSpinner">
+            <div class="spinner"></div>
+            <p style="color: white; margin-top: 15px;">Analyzing emotions...</p>
+        </div>
+
+        <div class="results-section" id="resultsSection">
+            <div class="primary-emotion">
+                <div class="emotion-icon" id="emotionIcon">
+                    <i class="fas fa-smile"></i>
+                </div>
+                <div class="emotion-name" id="emotionName">Analyzing...</div>
+                <div class="confidence-bar">
+                    <div class="confidence-fill" id="confidenceFill"></div>
+                    <div class="confidence-text" id="confidenceText">0%</div>
+                </div>
+            </div>
+
+            <div class="secondary-emotions" id="secondaryEmotions" style="display: none;">
+                <h4>Other emotions detected:</h4>
+                <div id="secondaryEmotionsList"></div>
+            </div>
+
+            <div class="emotions-distribution">
+                <h3>Emotion Distribution</h3>
+                <div id="emotionsList"></div>
+            </div>
+        </div>
+
+        <div class="debug-panel" id="debugPanel">
+            <h3>🔍 Debug Information</h3>
+            <div class="debug-content" id="debugContent"></div>
+        </div>
+    </div>
+
+    <script>
+        // Emotion configuration with proper colors and icons
+        const emotionConfig = {
+            sadness: { 
+                icon: 'fa-sad-tear', 
+                color: '#3498db',
+                gradient: 'linear-gradient(90deg, #3498db 0%, #2980b9 100%)'
+            },
+            happiness: { 
+                icon: 'fa-smile', 
+                color: '#f39c12',
+                gradient: 'linear-gradient(90deg, #f39c12 0%, #e67e22 100%)'
+            },
+            anger: { 
+                icon: 'fa-angry', 
+                color: '#e74c3c',
+                gradient: 'linear-gradient(90deg, #e74c3c 0%, #c0392b 100%)'
+            },
+            fear: { 
+                icon: 'fa-grimace', 
+                color: '#9b59b6',
+                gradient: 'linear-gradient(90deg, #9b59b6 0%, #8e44ad 100%)'
+            },
+            surprise: { 
+                icon: 'fa-surprise', 
+                color: '#2ecc71',
+                gradient: 'linear-gradient(90deg, #2ecc71 0%, #27ae60 100%)'
+            },
+            neutral: { 
+                icon: 'fa-meh', 
+                color: '#95a5a6',
+                gradient: 'linear-gradient(90deg, #95a5a6 0%, #7f8c8d 100%)'
+            }
+        };
+
+        // DOM elements
+        const elements = {
+            textInput: document.getElementById('textInput'),
+            charCount: document.getElementById('charCount'),
+            analyzeBtn: document.getElementById('analyzeBtn'),
+            debugBtn: document.getElementById('debugBtn'),
+            loadingSpinner: document.getElementById('loadingSpinner'),
+            resultsSection: document.getElementById('resultsSection'),
+            emotionIcon: document.getElementById('emotionIcon'),
+            emotionName: document.getElementById('emotionName'),
+            confidenceFill: document.getElementById('confidenceFill'),
+            confidenceText: document.getElementById('confidenceText'),
+            emotionsList: document.getElementById('emotionsList'),
+            secondaryEmotions: document.getElementById('secondaryEmotions'),
+            secondaryEmotionsList: document.getElementById('secondaryEmotionsList'),
+            debugPanel: document.getElementById('debugPanel'),
+            debugContent: document.getElementById('debugContent')
+        };
+
+        let debugMode = false;
+        let currentAnalysis = null;
+
+        // Event listeners
+        elements.textInput.addEventListener('input', updateCharCount);
+        elements.analyzeBtn.addEventListener('click', analyzeEmotion);
+        elements.debugBtn.addEventListener('click', toggleDebug);
+
+        // Character counter
+        function updateCharCount() {
+            const count = elements.textInput.value.length;
+            elements.charCount.textContent = count;
+        }
+
+        // Main analysis function
+        async function analyzeEmotion() {
+            const text = elements.textInput.value.trim();
+            
+            if (!text) {
+                showError('Please enter text to analyze');
+                return;
+            }
+
+            showLoading(true);
+            hideError();
+
+            try {
+                const response = await fetch('http://localhost:8000/predict', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        text: text,
+                        debug: debugMode
+                    })
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+
+                const result = await response.json();
+                currentAnalysis = result;
+
+                if (result.error) {
+                    throw new Error(result.error);
+                }
+
+                displayResults(result);
+                
+                if (debugMode && result.debug) {
+                    displayDebugInfo(result.debug);
+                }
+
+            } catch (error) {
+                showError(`Analysis failed: ${error.message}`);
+            } finally {
+                showLoading(false);
+            }
+        }
+
+        // Display results
+        function displayResults(result) {
+            const emotion = result.emotion;
+            const confidence = result.confidence;
+            const probabilities = result.probabilities;
+
+            // Update primary emotion
+            const config = emotionConfig[emotion] || emotionConfig.neutral;
+            
+            elements.emotionIcon.innerHTML = `<i class="fas ${config.icon}"></i>`;
+            elements.emotionIcon.style.color = config.color;
+            elements.emotionName.textContent = emotion.charAt(0).toUpperCase() + emotion.slice(1);
+            
+            // Update confidence bar
+            const confidencePercentage = Math.round(confidence * 100);
+            elements.confidenceFill.style.width = `${confidencePercentage}%`;
+            elements.confidenceText.textContent = `${confidencePercentage}%`;
+            
+            // Set confidence color based on level
+            elements.confidenceFill.className = 'confidence-fill';
+            if (confidence < 0.4) {
+                elements.confidenceFill.classList.add('low-confidence');
+            } else if (confidence < 0.7) {
+                elements.confidenceFill.classList.add('medium-confidence');
+            } else {
+                elements.confidenceFill.classList.add('high-confidence');
+            }
+
+            // Display emotion distribution
+            displayEmotionDistribution(probabilities);
+
+            // Show secondary emotions if confidence is not very high
+            if (confidence < 0.8 && result.all_emotions_sorted && result.all_emotions_sorted.length > 1) {
+                displaySecondaryEmotions(result.all_emotions_sorted.slice(1, 3));
+            } else {
+                elements.secondaryEmotions.style.display = 'none';
+            }
+
+            // Show results
+            elements.resultsSection.style.display = 'block';
+            
+            // Smooth scroll to results
+            setTimeout(() => {
+                elements.resultsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 100);
+        }
+
+        // Display emotion distribution
+        function displayEmotionDistribution(probabilities) {
+            elements.emotionsList.innerHTML = '';
+            
+            // Sort emotions by probability
+            const sortedEmotions = Object.entries(probabilities)
+                .sort(([,a], [,b]) => b - a);
+
+            sortedEmotions.forEach(([emotion, probability]) => {
+                const config = emotionConfig[emotion] || emotionConfig.neutral;
+                const percentage = Math.round(probability * 100);
+                
+                const emotionItem = document.createElement('div');
+                emotionItem.className = 'emotion-item';
+                emotionItem.innerHTML = `
+                    <div class="emotion-label">${emotion}</div>
+                    <div class="emotion-bar-container">
+                        <div class="emotion-bar" style="width: ${percentage}%; background: ${config.gradient}"></div>
+                    </div>
+                    <div class="emotion-percentage">${percentage}%</div>
+                `;
+                
+                elements.emotionsList.appendChild(emotionItem);
+            });
+        }
+
+        // Display secondary emotions
+        function displaySecondaryEmotions(secondaryEmotions) {
+            elements.secondaryEmotionsList.innerHTML = '';
+            
+            secondaryEmotions.forEach(([emotion, probability]) => {
+                const percentage = Math.round(probability * 100);
+                if (percentage > 10) { // Only show if significant
+                    const emotionItem = document.createElement('div');
+                    emotionItem.className = 'secondary-emotion-item';
+                    emotionItem.textContent = `${emotion} (${percentage}%)`;
+                    elements.secondaryEmotionsList.appendChild(emotionItem);
+                }
+            });
+            
+            elements.secondaryEmotions.style.display = 'block';
+        }
+
+        // Display debug information
+        function displayDebugInfo(debugInfo) {
+            elements.debugContent.textContent = JSON.stringify(debugInfo, null, 2);
+            elements.debugPanel.style.display = 'block';
+        }
+
+        // Toggle debug mode
+        function toggleDebug() {
+            debugMode = !debugMode;
+            elements.debugBtn.textContent = debugMode ? 'Hide Debug' : 'Debug';
+            
+            if (!debugMode) {
+                elements.debugPanel.style.display = 'none';
+            } else if (currentAnalysis) {
+                displayDebugInfo(currentAnalysis.debug || {});
+            }
+        }
+
+        // Loading states
+        function showLoading(show) {
+            elements.loadingSpinner.style.display = show ? 'block' : 'none';
+            elements.analyzeBtn.disabled = show;
+            if (show) {
+                elements.analyzeBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Analyzing...';
+            } else {
+                elements.analyzeBtn.innerHTML = '<i class="fas fa-brain"></i> Analyze Emotion';
+            }
+        }
+
+        // Error handling
+        function showError(message) {
+            const errorDiv = document.createElement('div');
+            errorDiv.className = 'error-message';
+            errorDiv.textContent = message;
+            
+            elements.resultsSection.parentNode.insertBefore(errorDiv, elements.resultsSection);
+            
+            setTimeout(() => {
+                errorDiv.remove();
+            }, 5000);
+        }
+
+        function hideError() {
+            const existingError = document.querySelector('.error-message');
+            if (existingError) {
+                existingError.remove();
+            }
+        }
+
+        // Initialize
+        updateCharCount();
+    </script>
+</body>
+</html>
